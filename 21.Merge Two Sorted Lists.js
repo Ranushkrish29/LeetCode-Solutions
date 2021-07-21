@@ -56,6 +56,38 @@ var mergeTwoLists = function (l1, l2) {
 };
 
 
+//same method using recurion method   
+// Runtime: 80 ms, faster than 88.75 % of JavaScript online submissions for Merge Two Sorted Lists.
+// Memory Usage: 40.9 MB, less than 11.08 % of JavaScript online submissions for Merge Two Sorted Lists.
+function mergeTwoLists2(l1, l2) {
+    let dummylinkedlist = new ListNode(0),
+        linkedlist = dummylinkedlist;
+    var helper = (l1, l2) => {
+        if (!l1 && !l2)
+            return;
+        else if (!l1 && l2) {
+            dummylinkedlist.next = new ListNode(l2.val);
+            dummylinkedlist = dummylinkedlist.next;
+            helper(l1, l2.next);
+        } else if (l1 && !l2) {
+            dummylinkedlist.next = new ListNode(l1.val);
+            dummylinkedlist = dummylinkedlist.next;
+            helper(l1.next, l2);
+        } else {
+            if (l1.val <= l2.val) {
+                dummylinkedlist.next = new ListNode(l1.val);
+                dummylinkedlist = dummylinkedlist.next;
+                helper(l1.next, l2);
+            } else {
+                dummylinkedlist.next = new ListNode(l2.val);
+                dummylinkedlist = dummylinkedlist.next;
+                helper(l1, l2.next);
+            }
+        }
+    }
+    helper(l1, l2);
+    return linkedlist.next;
+}
 
 //------------------------------------------------------------------------------------------
 //helper convertions
@@ -75,7 +107,7 @@ function convets(l1, l2) {
         dummyheadlist2 = dummyheadlist2.next
     }
     //calls the main function 
-    let resultlinkedlist = mergeTwoLists(linkedlist1.next, linkedlist2.next),
+    let resultlinkedlist = mergeTwoLists2(linkedlist1.next, linkedlist2.next),
         resultlist = [],
         current = resultlinkedlist;
     while (current) {
@@ -84,4 +116,4 @@ function convets(l1, l2) {
     }
     return resultlist;
 }
-console.log(convets(l1 = [1, 2, 4], l2 = [1, 3, 4]))//[ 1, 1, 2, 3, 4, 4 ]
+console.log(convets(l1 = [1, 2, 3], l2 = [1, 3, 4]))//[ 1, 1, 2, 3, 4, 4 ]
