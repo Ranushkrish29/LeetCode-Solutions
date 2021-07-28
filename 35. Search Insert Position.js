@@ -27,9 +27,9 @@ var searchInsert = function (nums, target) {
     return nums.length;
 };
 
-// Optimized implementation using binary search    -   runtime O(log n) || space O(1); 
-// Runtime: 60 ms, faster than 99.65 % of JavaScript online submissions for Search Insert Position.
-// Memory Usage: 39.8 MB, less than 47.76 % of JavaScript online submissions for Search Insert Position.
+// Optimized implementation using binary search    -   runtime O(log n) || space O(1);
+//  Runtime: 48 ms, faster than 100.00% of JavaScript online submissions for Search Insert Position.
+// Memory Usage: 39.6 MB, less than 66.58 % of JavaScript online submissions for Search Insert Position.
 var searchInsert = function (nums, target) {
     if (target <= nums[0])
         return 0;
