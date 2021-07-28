@@ -19,7 +19,7 @@ Example 5:
     Output: 0 */
 
 
-//method one    O(n) 
+//Brute Force Implementation   -   runtime O(n) || space O(1);
 var searchInsert = function (nums, target) {
     for (let i = 0; i < nums.length; i++)
         if (nums[i] >= target)
@@ -27,25 +27,24 @@ var searchInsert = function (nums, target) {
     return nums.length;
 };
 
-//method 2 using binary search;    O(n/2) 
+// Optimized implementation using binary search    -   runtime O(log n) || space O(1); 
+// Runtime: 60 ms, faster than 99.65 % of JavaScript online submissions for Search Insert Position.
+// Memory Usage: 39.8 MB, less than 47.76 % of JavaScript online submissions for Search Insert Position.
 var searchInsert = function (nums, target) {
-    let mid = nums.length / 2, start, end;
-    if (nums[mid] === target) {
-        return mid;
-    } else if (nums[mid] < target) {
-        start = mid + 1;
-        end = nums.length;
-    } else if (nums[mid] > target) {
-        start = 0;
-        end = mid + 1;
-    } else {
-        start = 0;
-        end = nums.length;
+    if (target <= nums[0])
+        return 0;
+    if (target > nums[nums.length - 1])
+        return nums.length;
+    let start = 0, end = nums.length - 1;
+    while (start < end) {
+        mid = Math.floor((end + start) / 2);
+        if (nums[mid] > target)
+            end = mid;
+        else if (nums[mid] < target)
+            start = mid + 1;
+        else
+            break;
     }
-    for (let i = start; i < end; i++)
-        if (nums[i] >= target)
-            return i;
-    return nums.length;
+    return nums[mid] >= target ? mid : mid + 1
 };
-
-console.log(searchInsert([1, 2, 4, 6, 8, 9, 10], 10))
+console.log(searchInsert(nums = [1, 3, 5, 6], target = 5))
