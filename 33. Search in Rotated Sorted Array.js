@@ -75,4 +75,4 @@ var search = (nums, target) => {
     }
     return -1;
 }
-console.log(search([3, 5], 0))//4
+console.log(search([3, 5], 0))//-1
