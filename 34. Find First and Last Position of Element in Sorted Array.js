@@ -77,7 +77,7 @@ var searchRange = function (nums, target) {
         found = true;
     //Find the number in the list .if present in the list return the index , else set found to false
     while (left <= right) {
-        mid = left + Math.floor((right - left) / 2);
+        mid = Math.floor((right + left) / 2);
         if (nums[mid] == target) {
             found = false;
             break;
@@ -105,5 +105,5 @@ var searchRange = function (nums, target) {
     //return
     return [left, right]
 }
-// console.log(searchRange(nums = [2, 2, 2], target = 3));//[ -1 , -1 ]
+console.log(searchRange(nums = [2, 2, 2], target = 3));//[ -1 , -1 ]
 
