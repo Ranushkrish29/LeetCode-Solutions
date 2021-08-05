@@ -28,7 +28,7 @@ var search = function (nums, target) {
 // console.log(search(nums = [4, 5, 6, 7, 0, 1, 2], target = 0))//4
 
 
-//Optimized Implementation    -- Runtime O(2logn) || sapce O(1)
+//Brute Force Implementation    -- Runtime O(2logn) || sapce O(1)
 var search = (nums, target) => {
     let start = 0, end = nums.length - 1;
     //To find the pivit index
@@ -75,4 +75,28 @@ var search = (nums, target) => {
     }
     return -1;
 }
-console.log(search([3, 5], 0))//-1
+// console.log(search(nums = [4, 5, 6, 7, 0, 1, 2], target = 0))//4
+
+
+//Optimizied Implementation    -- Runtime O(logn) || sapce O(1)
+var search = (nums, target) => {
+    let left = 0,
+        right = nums.length - 1;
+    while (left <= right) {
+        let mid = left + Math.floor((right - left) / 2);
+        if (nums[mid] == target)
+            return mid;
+        else if (nums[left] <= nums[mid])
+            if (nums[left] <= target && nums[mid] > target)
+                right = mid - 1;
+            else
+                left = mid + 1;
+        else
+            if (nums[mid] < target && nums[right] >= target)
+                left = mid + 1;
+            else
+                right = mid - 1;
+    }
+    return -1;
+}
+console.log(search(nums = [5, 6, 7, 8, 9, 0, 1, 2], target = 2))//7
