@@ -36,17 +36,16 @@ function countAndSay(n) {
     let str = '1',
         temp = '';
     for (let i = 1; i < n; i++) {
-        let count = 1;
+        let count = 0;
         for (let j = 0; j < str.length - 1; j++) {
             if (str[j] == str[j + 1]) {
                 count++;
             } else {
-                temp += count + '' + str[j];
+                temp += count + 1 + '' + str[j];
                 count = 0;
-                count++;
             }
         }
-        temp += count + '' + str[str.length - 1];
+        temp += ++count + '' + str[str.length - 1];
         str = temp;
         temp = '';
         count = 0;
