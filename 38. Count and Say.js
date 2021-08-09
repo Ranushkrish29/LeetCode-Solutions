@@ -36,21 +36,45 @@ function countAndSay(n) {
     let str = '1',
         temp = '';
     for (let i = 1; i < n; i++) {
-        let count = 0;
+        let count = 1;
         for (let j = 0; j < str.length - 1; j++) {
             if (str[j] == str[j + 1]) {
                 count++;
             } else {
-                temp += count + 1 + '' + str[j];
+                temp += count + '' + str[j];
                 count = 0;
+                count++;
             }
         }
-        temp += ++count + '' + str[str.length - 1];
+        temp += count + '' + str[str.length - 1];
         str = temp;
         temp = '';
         count = 0;
     }
     return str;
 }
-
 console.log(countAndSay(5))//111221
+
+
+
+
+//simplyfied version
+function countAndSay(n) {
+    if (n == 1)
+        return '1';
+    let str = '1',
+        temp = '';
+    for (let i = 1; i < n; i++) {
+        let count = 0;
+        for (let j = 0; j < str.length - 1; j++)
+            if (str[j] == str[j + 1])
+                count++;
+            else {
+                temp += ++count + '' + str[j];
+                count = 0;
+            }
+        temp += ++count + '' + str[str.length - 1];
+        [str, temp, count] = [temp, '', 0];
+    }
+    return str;
+}
