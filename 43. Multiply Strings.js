@@ -14,7 +14,7 @@ Example 2:
 // Runtime: 144 ms, faster than 15.78 % of JavaScript online submissions for Multiply Strings.
 // Memory Usage: 47.8 MB, less than 6.46 % of JavaScript online submissions for Multiply Strings.
 
-//helps to reverse the given string : 
+//helper function to reverse the given string : 
 function reversestring(string) {
     let resutltstring = '';
     for (let i = string.length - 1; i > -1; i--)
@@ -84,7 +84,7 @@ var multiply = function (num1, num2) {
     return reversestring(str);
 }
 
-console.log(multiply("60974249908865105026646412538664653190280198809433017", "500238825698990292381312765074025160144624723742"));
+// console.log(multiply("60974249908865105026646412538664653190280198809433017", "500238825698990292381312765074025160144624723742"));
 //output---> 30501687172287445993560048081057096686019986405658336826483685740920318317486606305094807387278589614
 
 /*Explanation:
@@ -193,3 +193,38 @@ step 3 addes all the intgers in list from backwords:
 ------------------------------------------------------------------------------------------------------------------
 
   ] */
+
+
+//OPtimized Implementation :  runtime of O(n^2):
+// Runtime: 80 ms, faster than 87.10 % of JavaScript online submissions for Multiply Strings.
+// Memory Usage: 41.3 MB, less than 54.78 % of JavaScript online submissions for Multiply Strings.
+
+multiply = (num1, num2) => {
+    //list to store the result:
+    const list = [...Array(num1.length + num2.length)].fill(0);
+
+    //loops through the num1 all indiviual digits from backwards
+    for (let i = num1.length - 1; i >= 0; i--) {
+        // loops through the num2 all indiviual digits from backwards
+        for (let j = num2.length - 1; j >= 0; j--) {
+
+            //Define
+            const prevRemainder = list[i + j + 1]
+            const product = num1[i] * num2[j] + prevRemainder
+            const unitsDigit = product % 10
+            const carryOver = Math.floor(product / 10)
+
+            //Update
+            list[i + j + 1] = unitsDigit;
+            list[i + j] += carryOver
+        }
+    }
+    //Delete leading-unwanted-zeroes
+    let idx = 0;
+    while (list[idx] === 0) list.shift();
+    if (!list.length) return "0";
+    //return the list list as a string:
+    return list.join("");
+};
+console.log(multiply("123456789", "987654321"));
+
