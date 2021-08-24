@@ -22,12 +22,14 @@ Constraints:
 // Brute force Implementaion     --- runtime O(n) || space O(n)
 // Runtime: 80 ms, faster than 94.61 % of JavaScript online submissions for Permutations.
 // Memory Usage: 41.5 MB, less than 82.56 % of JavaScript online submissions for Permutations.
-// Explaination :: 
-//   6 premute = 1 constant value + 5 other premute  
-//      5 premute = 1 constant value + 4 other premute 
-//          4 premute = 1 constant value + 3 other premute 
-//              3 premute = 1 constant value + 2 other premute 
-//                  2 premute = 1 constant value + 1 other premute 
+// Simple concept :: 
+//   6 premute = 1 constant value + 5 other premute ,and 5 other possibilities :
+//      5 premute = 1 constant value + 4 other premute ,and 4 other possibilities :
+//          4 premute = 1 constant value + 3 other premute ,and 3 other possibilities :
+//              3 premute = 1 constant value + 2 other premute ,and 2 other possibilities :
+//                  2 premute = swap the elements for two times 
+//Not so impresive ,but still works perfects with in the Constraints: ) 
+
 var permute = function (nums) {
     if (nums.length == 1)
         return [nums];
@@ -84,4 +86,5 @@ var permute = function (nums) {
         return six(nums);
 };
 
-console.log(permute([-1]));
+console.log(permute([1, 2, 3, 4, 5]));
+//     [[1, 2, 3, 4, 5],[1, 2, 3, 5, 4],[1, 2, 4, 5, 3],[1, 2, 4, 3, 5],[1, 2, 5, 3, 4],[1, 2, 5, 4, 3],[1, 3, 4, 5, 2],[1, 3, 4, 2, 5],[1, 3, 5, 2, 4],[1, 3, 5, 4, 2],[1, 3, 2, 4, 5],[1, 3, 2, 5, 4],[1, 4, 5, 2, 3],[1, 4, 5, 3, 2],[1, 4, 2, 3, 5],[1, 4, 2, 5, 3],[1, 4, 3, 5, 2],[1, 4, 3, 2, 5],[1, 5, 2, 3, 4],[1, 5, 2, 4, 3],[1, 5, 3, 4, 2],[1, 5, 3, 2, 4],[1, 5, 4, 2, 3],[1, 5, 4, 3, 2],[2, 3, 4, 5, 1],[2, 3, 4, 1, 5],[2, 3, 5, 1, 4],[2, 3, 5, 4, 1],[2, 3, 1, 4, 5],[2, 3, 1, 5, 4],[2, 4, 5, 1, 3],[2, 4, 5, 3, 1],[2, 4, 1, 3, 5],[2, 4, 1, 5, 3],[2, 4, 3, 5, 1],[2, 4, 3, 1, 5],[2, 5, 1, 3, 4],[2, 5, 1, 4, 3],[2, 5, 3, 4, 1],[2, 5, 3, 1, 4],[2, 5, 4, 1, 3],[2, 5, 4, 3, 1],[2, 1, 3, 4, 5],[2, 1, 3, 5, 4],[2, 1, 4, 5, 3],[2, 1, 4, 3, 5],[2, 1, 5, 3, 4],[2, 1, 5, 4, 3],[3, 4, 5, 1, 2],[3, 4, 5, 2, 1],[3, 4, 1, 2, 5],[3, 4, 1, 5, 2],[3, 4, 2, 5, 1],[3, 4, 2, 1, 5],[3, 5, 1, 2, 4],[3, 5, 1, 4, 2],[3, 5, 2, 4, 1],[3, 5, 2, 1, 4],[3, 5, 4, 1, 2],[3, 5, 4, 2, 1],[3, 1, 2, 4, 5],[3, 1, 2, 5, 4],[3, 1, 4, 5, 2],[3, 1, 4, 2, 5],[3, 1, 5, 2, 4],[3, 1, 5, 4, 2],[3, 2, 4, 5, 1],[3, 2, 4, 1, 5],[3, 2, 5, 1, 4],[3, 2, 5, 4, 1],[3, 2, 1, 4, 5],[3, 2, 1, 5, 4],[4, 5, 1, 2, 3],[4, 5, 1, 3, 2],[4, 5, 2, 3, 1],[4, 5, 2, 1, 3],[4, 5, 3, 1, 2],[4, 5, 3, 2, 1],[4, 1, 2, 3, 5],[4, 1, 2, 5, 3],[4, 1, 3, 5, 2],[4, 1, 3, 2, 5],[4, 1, 5, 2, 3],[4, 1, 5, 3, 2],[4, 2, 3, 5, 1],[4, 2, 3, 1, 5],[4, 2, 5, 1, 3],[4, 2, 5, 3, 1],[4, 2, 1, 3, 5],[4, 2, 1, 5, 3],[4, 3, 5, 1, 2],[4, 3, 5, 2, 1],[4, 3, 1, 2, 5],[4, 3, 1, 5, 2],[4, 3, 2, 5, 1],[4, 3, 2, 1, 5],[5, 1, 2, 3, 4],[5, 1, 2, 4, 3],[5, 1, 3, 4, 2],[5, 1, 3, 2, 4],[5, 1, 4, 2, 3],[5, 1, 4, 3, 2],[5, 2, 3, 4, 1],[5, 2, 3, 1, 4],[5, 2, 4, 1, 3],[5, 2, 4, 3, 1],[5, 2, 1, 3, 4],[5, 2, 1, 4, 3],[5, 3, 4, 1, 2],[5, 3, 4, 2, 1],[5, 3, 1, 2, 4],[5, 3, 1, 4, 2],[5, 3, 2, 4, 1],[5, 3, 2, 1, 4],[5, 4, 1, 2, 3],[5, 4, 1, 3, 2],[5, 4, 2, 3, 1],[5, 4, 2, 1, 3],[5, 4, 3, 1, 2],[5, 4, 3, 2, 1]]
