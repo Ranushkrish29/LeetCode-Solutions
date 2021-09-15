@@ -16,7 +16,7 @@ Example 3:
   */
 
 
-//Brute Force Implementation
+//Brute Force Implementation    Runtime O(n^2)  || space O(n)
 var maxSubArray = function (nums) {
     let res = -Infinity;
     for (let i = 0; i < nums.length; i++) {
@@ -32,3 +32,19 @@ console.log(maxSubArray([-1]));
 
 
 
+
+//Optimized Method ( Kadane's Algorithm )    Runtime O(n)  || space O(n)
+//Runtime: 68 ms, faster than 97.46% of JavaScript online submissions for Maximum Subarray.
+// Memory Usage: 40.4 MB, less than 25.29 % of JavaScript online submissions for Maximum Subarray.
+var maxSubArray = function (nums) {
+    let maxSum = nums[0],
+        currSum = 0;
+    for (let i = 0; i < nums.length; i++) {
+        if (currSum < 0)
+            currSum = 0;
+        currSum += nums[i];
+        maxSum = Math.max(maxSum, currSum);
+    }
+    return maxSum;
+}
+console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]));//6
