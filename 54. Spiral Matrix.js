@@ -25,11 +25,16 @@ Constraints:
 
 
 //Brute Force Implementation    Runtime O(n)
+//  At first, we move by the RIGHT direction.
+// If we meet the boundary cell then we change to the next direction.
+// Directions are in order are [RIGHT, DOWN, LEFT, TOP].
+// By completing one round in ordered direction move to the inner elements and Do the same process in same orderd direction .
 var spiralOrder = function (matrix) {
 
     let i = 0,
         j = 0,
         nloop = 0,
+        //currentLayerPosition  - this is responsible for choosing the elements which are not visited and to find the current layer:
         currentLayerPosition = 0,
         resList = [];
 
