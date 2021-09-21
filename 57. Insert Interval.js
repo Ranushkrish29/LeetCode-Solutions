@@ -43,3 +43,5 @@ var insert = function (intervals, newInterval) {
     return intervals;
 };
 console.log(insert(intervals = [[1, 5]], newInterval = [2, 3]))
+
+
