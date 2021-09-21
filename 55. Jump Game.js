@@ -31,7 +31,7 @@ function canJump(nums) {
     }
     return helper(0, nums[0]) ? true : false
 }
-console.log(canJump([1, 3, 3, 0, 0, 0, 5, 2, 1, 0, 0]));
+console.log(canJump([1, 3, 3, 0, 0, 0, 5, 2, 1, 0, 0]));//false
 
 
 /**
@@ -78,4 +78,4 @@ function canJump(nums) {
     }
     return count === 1 ? true : false;
 }
-console.log(canJump([2, 3, 1, 1, 4]));
+console.log(canJump([2, 3, 1, 1, 4]));//true
