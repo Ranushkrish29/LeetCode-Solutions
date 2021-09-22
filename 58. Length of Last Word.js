@@ -20,8 +20,7 @@ Constraints:
     There will be at least one word in s. */
 
 
-
-//Brute Force Implementation  Runtime  O(n) | space O(1)
+//Optimized Implementation  Runtime  O(n) | space O(1)
 var lengthOfLastWord = function (s) {
     let len = 0;
     for (let i = s.length - 1; i >= 0; i--) {
@@ -34,3 +33,10 @@ var lengthOfLastWord = function (s) {
 };
 console.log(lengthOfLastWord("   fly me   to   the moon  "))
 
+
+//Another method   - using split and filter 
+var lengthOfLastWord = function (s) {
+    let x = s.split(' ').filter((a) => a != '');
+    return x[x.length - 1].length;
+};
+console.log(lengthOfLastWord("   fly me   to   the moon  "))
