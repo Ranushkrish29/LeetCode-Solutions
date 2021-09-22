@@ -27,7 +27,7 @@ var lengthOfLastWord = function (s) {
     for (let i = s.length - 1; i >= 0; i--) {
         if (s[i] === ' ' && len > 0)
             return len;
-        else if (s[i] != ' ')
+        if (s[i] != ' ')
             len++;
     }
     return len;
