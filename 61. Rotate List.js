@@ -55,7 +55,65 @@ var rotateRight = function (head, k) {
     }
     return head;
 };
-console.log(addtwolinkedlistfun(head = [1, 2, 3, 4, 5, 6, 7, 8, 9], k = 15))//[ 4, 5, 6, 7, 8, 9, 1, 2, 3 ]
+// console.log(addtwolinkedlistfun(head = [1, 2, 3, 4, 5, 6, 7, 8, 9], k = 15))//[ 4, 5, 6, 7, 8, 9, 1, 2, 3 ]
+
+
+
+
+//Optimized Implementation 
+// Runtime: 76 ms, faster than 96.63 % of JavaScript online submissions for Rotate List.
+// Memory Usage: 40.8 MB, less than 16.33 % of JavaScript online submissions for Rotate List.
+var rotateRight = function (head, k) {
+    //return head if linked list is empty or having only one node :
+    if (!head || head.next == null)
+        return head;
+
+    let length = 0,
+        current = head;
+    //find the length of the linkded list :
+    while (current) {
+        length++;
+        current = current.next
+    }
+    //reduce the number of rotates if it is greater then the list-length itself : 
+    k = k % length;
+    //if rotate ==0 no rotate is need just return the head
+    if (k == 0)
+        return head;
+    //Go through the linkded list nodes
+    current = head;
+    while (current) {
+        //decrement the length
+        length--;
+        //if the length is equal to the rotates to be done : 
+        //      Break the loop and the current will have element to be placed in the front
+        if (length == k)
+            break;
+        current = current.next;
+    }
+    //set current.next to newnode
+    let newnode = current.next;
+    //and update the current.next to null ,cuz this is gonna be a last node in the linked list
+    current.next = null;
+    //set current to newnode ,newnode is the one which have the all nodes to be placed in front
+    current = newnode;
+
+    //loop through the current
+    while (current) {
+        //if the current.next is null :
+        //      break the loop and the current will have last node of newnode
+        if (current.next == null)
+            break;
+        current = current.next;
+    }
+    //and update the last node of the newnode to point the head
+    current.next = head;
+    //make the newnode as the head and return :
+    head = newnode;
+    return head;
+};
+
+
 
 
 
@@ -75,6 +133,5 @@ function addtwolinkedlistfun(list2, k) {
     }
     return list;
 }
-
-console.log(addtwolinkedlistfun(head = [1, 2, 3, 4, 5, 6, 7, 8, 9], k = 15))
-console.log(6 % 5)
+console.log(addtwolinkedlistfun(head = [1, 2, 3, 4, 5, 6, 7, 8, 9], k = 15))//[ 4, 5, 6, 7, 8, 9, 1, 2, 3 ]
+console.log(addtwolinkedlistfun(head = [1, 2, 3, 4], k = 1))
