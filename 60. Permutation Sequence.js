@@ -22,7 +22,7 @@ Constraints:
     1 <= n <= 9
     1 <= k <= n! */
 
-
+//for Optimized Implementation ,jump to line 94 :
 
 
 //Brute Force Implementation
@@ -57,7 +57,6 @@ function getPermutation(n, k) {
 // console.log(getPermutation(4, 9));//2314
 
 
-
 //Brute Force Implementation    -- using back tracking method  
 function getPermutation(n, k) {
 
@@ -78,10 +77,46 @@ function getPermutation(n, k) {
         for (let i = 0; i < nums.length; i++) {
             premutationlist.push(nums[i]);
             helper(nums.filter((n, index) => index != i), premutationlist)
+            if (count > k)
+                return;
             premutationlist.pop();
         }
     }
     helper(nums, []);
     return result[result.length - 1].join('');
 }
-console.log(getPermutation(4, 9));//2314
+console.log(getPermutation(8, 79));//12375468
+
+
+//------------------------------------------------------------------------------------------------------------------
+
+// Optimized Implementation 
+// Runtime: 72 ms, faster than 97.32 % of JavaScript online submissions for Permutation Sequence.
+// Memory Usage: 39.5 MB, less than 90.18 % of JavaScript online submissions for Permutation Sequence.
+function getPermutation(n, k) {
+    let list = [],
+        str = '',
+        factnum = n - 1,
+        factorial = 1,
+        posindex;
+    k = k - 1;
+
+    for (let i = 1; i <= n; i++)
+        list.push(i);
+
+    for (let j = 0; j < n; j++) {
+
+        for (let i = 1; i <= factnum; i++)
+            factorial *= i;
+
+        posindex = Math.floor(k / factorial);
+        str += list[posindex];
+        list = list.filter((a, index) => { return index != posindex });
+        k = k % factorial;
+        factorial = 1;
+        factnum--;
+
+    }
+    return str;
+}
+console.log(getPermutation(2, 2))
