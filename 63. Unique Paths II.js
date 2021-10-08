@@ -52,4 +52,4 @@ var uniquePathsWithObstacles = function (obstacleGrid) {
     return obstacleGrid[obstacleGrid.length - 1][obstacleGrid[0].length - 1];
 
 };
-console.log(uniquePathsWithObstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]]));
+console.log(uniquePathsWithObstacles([[0, 0, 0], [0, 1, 0], [0, 0, 0]]));//2
