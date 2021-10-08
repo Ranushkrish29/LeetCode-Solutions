@@ -50,8 +50,41 @@ var uniquePaths = function (m, n) {
     helper(1, 1, []);
     return count;
 };
+console.log(uniquePaths(4, 3));
+
+//Brute Force Implementation | unsig backtracking method and memozisation | Working for even large numbers
+// Runtime: 64 ms, faster than 97.63 % of JavaScript online submissions for Unique Paths.
+// Memory Usage: 40.6 MB, less than 10.31 % of JavaScript online submissions for Unique Paths.
+var uniquePaths = function (m, n) {
+    let list = {};
+    function helper(x, y) {
+        if (list['' + x + ',' + y])
+            return list['' + x + ',' + y];
+
+        if (x === m && y === n)
+            return 1;
+
+        let sum = 0;
+        if (x < m)
+            sum += helper(x + 1, y);
+        if (y < n)
+            sum += helper(x, y + 1);
+
+        list['' + x + ',' + y] = sum
+        return sum;
+    }
+    return helper(1, 1);
+};
+console.log(uniquePaths(100, 19));
 
 
+
+let obj = {
+    '2,3': {
+        value: 3
+    }
+}
+console.log(obj['2,3'].value)
 
 //Optimized Implementation  runtime O(m*n) | space O(m*n)
 var uniquePaths = function (m, n) {
@@ -69,4 +102,4 @@ var uniquePaths = function (m, n) {
 };
 
 
-console.log(uniquePaths(100, 14))//33976189889821200
+// console.log(uniquePaths(100, 14))//33976189889821200
