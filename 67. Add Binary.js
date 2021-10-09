@@ -34,3 +34,13 @@ var addBinary = function (a, b) {
     return finalx;
 };
 console.log(addBinary(a = "1010", b = "1011"));//10101
+
+
+//Optimized Implementation in space O(1)
+var addBinary = function (a, b) {
+    const aBin = `0b${a}`;
+    const bBin = `0b${b}`;
+    const sum = BigInt(aBin) + BigInt(bBin);
+    return sum.toString(2);
+};
+console.log(addBinary(a = "1010", b = "1011"));//10101
