@@ -29,4 +29,38 @@ var mySqrt = function (x) {
         num++;
     }
 };
-console.log(mySqrt(5545454))//2354
+// console.log(mySqrt(5545454))//2354
+
+//Another Brute Force Implementation
+var mySqrt = function (x) {
+    let num = 0;
+    while (++num)
+        if (Math.floor(x / num) < num)
+            return num - 1;
+};
+console.log(mySqrt(361))//19
+
+
+//using build-in function 
+var mySqrt = function (x) {
+    return Math.floor(Math.sqrt(x));
+}
+console.log(mySqrt(64))//19
+
+
+//Optimized implementation
+var mySqrt = function (x) {
+    if (x < 2) return x;
+    let mid, left = 2, right = x / 2;
+    while (left <= right) {
+        mid = Math.floor((right + left) / 2);
+        let n = mid * mid;
+        if (n == x) return mid;
+        if (n < x) {
+            left = mid + 1;
+        } else {
+            right = mid - 1
+        }
+    }
+    return Math.floor(right)
+};
