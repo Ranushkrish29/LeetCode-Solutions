@@ -36,7 +36,7 @@ Follow up:
     Could you devise a constant space solution?*/
 
 
-
+//Brute froce Implementation 
 var setZeroes = function (matrix) {
     let obj = {};
     for (let i in matrix)
@@ -51,4 +51,26 @@ var setZeroes = function (matrix) {
                 matrix[i][j] = 0;
     return matrix;
 };
-console.log(setZeroes([[1, 1, 1], [1, 0, 1], [1, 1, 1]]));
+// console.log(setZeroes([[1, 1, 1], [1, 0, 1], [1, 1, 1]]));
+
+
+//
+var setZeroes = function (matrix) {
+    let c = {}, r = {};
+    for (let i in matrix)
+        for (let j in matrix[i])
+            if (matrix[i][j] === 0) {
+                c[i] = 1;
+                r[j] = 1;
+            }
+    for (let i in c)
+        for (let j in matrix[0])
+            matrix[i][j] = 0;
+    for (let i in r)
+        for (let j in matrix)
+            matrix[j][i] = 0;
+    return matrix;
+};
+console.log(setZeroes([[0, 1, 2, 0], [3, 4, 5, 2], [1, 3, 1, 5]]));
+
+
